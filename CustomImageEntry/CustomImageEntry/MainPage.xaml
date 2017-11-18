@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CustomImageEntry"
+             x:Class="CustomImageEntry.MainPage"
+             xmlns:controls="clr-namespace:CustomImageEntry.CustomControls"
+             Title="Custom Image Entry">
+
+    <StackLayout>
+
+        <controls:ImageEntry Text="Xamarin Skills" 
+                                      Placeholder="Xamarin Skills"
+                                      AccentColor="Green"
+                                      ImageAlignment="Left"
+                                      LImageSource="email"/>
+        <controls:ImageEntry  Placeholder="Xamarin Skills"
+                                       AccentColor="Green"
+                                       ImageAlignment="Right"
+                                       RImageSource="user"/>
+        <controls:ImageEntry Text="Xamarin Skills" 
+                                      AccentColor="Green"
+                                      LImageSource="email"
+                                      RImageSource="eyeshow"
+                                      ImageAlignment="Password"
+                             />
+    </StackLayout>
+
+</ContentPage>
