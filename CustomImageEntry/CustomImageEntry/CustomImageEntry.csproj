@@ -39,6 +39,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\CustomImage.cs" />
     <Compile Include="CustomControls\ImageEntry.xaml.cs">
       <DependentUpon>ImageEntry.xaml</DependentUpon>
     </Compile>

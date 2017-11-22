@@ -4,25 +4,58 @@
              xmlns:local="clr-namespace:CustomImageEntry"
              x:Class="CustomImageEntry.MainPage"
              xmlns:controls="clr-namespace:CustomImageEntry.CustomControls"
+             BackgroundColor="Beige"
              Title="Custom Image Entry">
-
-    <StackLayout>
-
-        <controls:ImageEntry Text="Xamarin Skills" 
+    <StackLayout Padding="10">
+        <controls:ImageEntry Text="Left Image" 
                                       Placeholder="Xamarin Skills"
-                                      AccentColor="Green"
+                                      AccentColor="Red"
                                       ImageAlignment="Left"
                                       LImageSource="email"/>
-        <controls:ImageEntry  Placeholder="Xamarin Skills"
+        <controls:ImageEntry  Text="Right Image" 
+                              Placeholder="Xamarin Skills"
                                        AccentColor="Green"
                                        ImageAlignment="Right"
                                        RImageSource="user"/>
-        <controls:ImageEntry Text="Xamarin Skills" 
-                                      AccentColor="Green"
+        <controls:ImageEntry Text="Both Side Image" 
+                                      AccentColor="Yellow"
                                       LImageSource="email"
                                       RImageSource="eyeshow"
                                       ImageAlignment="Password"
                              />
+        <controls:ImageEntry Placeholder="Xamarin Skills" 
+                             Text="None Image"         
+                             AccentColor="Black"
+                                      LImageSource="email"
+                                      RImageSource="eyeshow"
+                                      ImageAlignment="None"
+                             />
+        <controls:ImageEntry Placeholder="Xamarin Skills" 
+                             Text="Left Image Entry Clicked"         
+                             AccentColor="White"
+                                      LImageSource="email"
+                                      RImageSource="eyeshow"
+                                      ImageAlignment="Password"
+                             LeftImageClicked="ImageEntry_LeftImageClicked"
+                             />
+        <controls:ImageEntry Placeholder="Xamarin Skills" 
+                             Text="Right Image Entry Clicked"         
+                             AccentColor="Blue"
+                                      LImageSource="email"
+                                      RImageSource="eyeshow"
+                                      ImageAlignment="Password"
+                             RightImageClicked="ImageEntry_RightImageClicked"
+                             />
+        <controls:ImageEntry Placeholder="Xamarin Skills" 
+                             Text="Left and Right Image Entry Clicked"         
+                             AccentColor="BlueViolet"
+                                      LImageSource="email"
+                                      RImageSource="eyeshow"
+                                      ImageAlignment="Password"
+                             LeftImageClicked="ImageEntry_LeftImageClicked_1"
+                             RightImageClicked="ImageEntry_RightImageClicked_1"
+                             />
+        <Entry x:Name="DefaultEntry" Placeholder="Default Entry"/>
     </StackLayout>
 
 </ContentPage>

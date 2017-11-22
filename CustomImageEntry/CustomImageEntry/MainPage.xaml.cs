@@ -14,6 +14,24 @@ namespace CustomImageEntry
             InitializeComponent();
         }
 
-       
+        private void ImageEntry_LeftImageClicked(object sender, EventArgs e)
+        {
+            DefaultEntry.Text = "Working Left Image Entry Clicked";
+        }
+
+        private void ImageEntry_RightImageClicked(object sender, EventArgs e)
+        {
+            DefaultEntry.Text = "Working Right Image Entry Clicked";
+        }
+
+        private void ImageEntry_LeftImageClicked_1(object sender, EventArgs e)
+        {
+            DefaultEntry.Text = "Working Both Entry Clicked ";
+        }
+
+        private void ImageEntry_RightImageClicked_1(object sender, EventArgs e)
+        {
+            DefaultEntry.Text = "Working Both Both Entry Clicked";
+        }
     }
 }

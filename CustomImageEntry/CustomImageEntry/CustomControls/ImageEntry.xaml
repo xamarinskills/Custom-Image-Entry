@@ -2,30 +2,29 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomImageEntry.CustomControls.ImageEntry"
-             xmlns:local="clr-namespace:CustomImageEntry.CustomControls">
+             xmlns:local="clr-namespace:CustomImageEntry.CustomControls"
+             >
   <ContentView.Content>
         <StackLayout Spacing="2">
             <StackLayout Orientation="Horizontal" Spacing="0">
-                <Image x:Name="LIcon" 
-                       Source="icon"
+                <local:CustomImage x:Name="LIcon" 
+                       Source="{Binding LImageSource,Mode=TwoWay}" 
                        IsVisible="False" 
-                       HorizontalOptions="Start"
-                       HeightRequest="25" 
+                       HorizontalOptions="Start" 
+                       HeightRequest="25"
                        WidthRequest="25"/>
-                <local:MyEntry x:Name="imgEntry"
-                               PlaceholderColor="Red" 
-                               Text="{Binding Text, Mode=TwoWay}"
-                               HorizontalOptions="FillAndExpand"/>
-                <Image x:Name="RIcon"
-                       Source="icon"
-                       IsVisible="False" 
-                       HorizontalOptions="End"
-                       HeightRequest="25" WidthRequest="25"/>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="SetPassword_Tapped"/>
-                </Image.GestureRecognizers>
 
-            </StackLayout>
+                <local:MyEntry x:Name="imgEntry" 
+                                       PlaceholderColor="Red" 
+                                       Text="{Binding Text, Mode=TwoWay}" 
+                                       HorizontalOptions="FillAndExpand"/>
+                <local:CustomImage x:Name="RIcon" 
+                       Source="{Binding RImageSourceProperty,Mode=TwoWay}"
+                       IsVisible="False" 
+                       HorizontalOptions="End" 
+                       HeightRequest="25"
+                       WidthRequest="25"/>
+             </StackLayout>
             <BoxView x:Name="BottomBorder" BackgroundColor="Gray"   HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
             <BoxView x:Name="HiddenBottomBorder" BackgroundColor="Gray"  HeightRequest="5" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
         </StackLayout>

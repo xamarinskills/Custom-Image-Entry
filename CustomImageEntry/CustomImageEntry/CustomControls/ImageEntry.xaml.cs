@@ -12,18 +12,10 @@ namespace CustomImageEntry.CustomControls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImageEntry : ContentView
     {
-        public static BindableProperty OnClickProperty =
-        BindableProperty.Create("OnClick", typeof(Command), typeof(ImageEntry));
-
-        public Command OnClick
-        {
-            get { return (Command)GetValue(OnClickProperty); }
-            set { SetValue(OnClickProperty, value); }
-        }
-
         public static BindableProperty TextProperty = BindableProperty.Create(nameof(Text),
-                                                    typeof(string), typeof(ImageEntry),
-                                                    defaultBindingMode: BindingMode.TwoWay);
+                                                        typeof(string),
+                                                        typeof(ImageEntry),
+                                                        defaultBindingMode: BindingMode.TwoWay);
         public static BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder),
                                                             typeof(string), typeof(ImageEntry),
                                                             defaultBindingMode: BindingMode.TwoWay,
@@ -57,7 +49,7 @@ namespace CustomImageEntry.CustomControls
         public static readonly BindableProperty LImageSourceProperty = BindableProperty.Create(nameof(LImageSource),
                                                                        typeof(ImageSource),
                                                                        typeof(ImageEntry),
-                                                                       defaultBindingMode:BindingMode.TwoWay,
+                                                                       defaultBindingMode: BindingMode.TwoWay,
                                                                        propertyChanged: (bindable, oldVal, newVal) =>
                                                                        {
                                                                            var matEntry = (ImageEntry)bindable;
@@ -87,6 +79,7 @@ namespace CustomImageEntry.CustomControls
             get { return (ImageSource)GetValue(LImageSourceProperty); }
             set { SetValue(LImageSourceProperty, value); }
         }
+
         public Color AccentColor
         {
             get
@@ -152,11 +145,24 @@ namespace CustomImageEntry.CustomControls
             get => (eImageAlignment)GetValue(ImageAlignmentProperty);
             set => SetValue(ImageAlignmentProperty, value);
         }
+        public event EventHandler LeftImageClicked;
 
+        public virtual void LeftImageOn_Clicked(object sender, EventArgs e)
+        {
+            LeftImageClicked?.Invoke(sender, e);
+        }
+        public event EventHandler RightImageClicked;
+
+        public virtual void RightImageOn_Clicked(object sender, EventArgs e)
+        {
+            RightImageClicked?.Invoke(sender, e);
+        }
         public ImageEntry()
         {
             InitializeComponent();
             imgEntry.BindingContext = this;
+            RIcon.ImageClicked += RightImageOn_Clicked;
+            LIcon.ImageClicked += LeftImageOn_Clicked;
             imgEntry.Focused += async (s, a) =>
             {
                 BottomBorder.HeightRequest = 2.5;
@@ -164,7 +170,6 @@ namespace CustomImageEntry.CustomControls
                 HiddenBottomBorder.BackgroundColor = AccentColor;
                 if (string.IsNullOrEmpty(imgEntry.Text))
                 {
-                    // animate both at the same time
                     await Task.WhenAll(
 
                         HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, BottomBorder.Width, BottomBorder.Height), 200)
@@ -182,7 +187,6 @@ namespace CustomImageEntry.CustomControls
                 BottomBorder.BackgroundColor = Color.Gray;
                 if (string.IsNullOrEmpty(imgEntry.Text))
                 {
-                    // animate both at the same time
                     await Task.WhenAll(
                         HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, 0, BottomBorder.Height), 200)
                      );
@@ -193,21 +197,6 @@ namespace CustomImageEntry.CustomControls
                     await HiddenBottomBorder.LayoutTo(new Rectangle(BottomBorder.X, BottomBorder.Y, 0, BottomBorder.Height), 200);
                 }
             };
-        }
-
-
-        private void SetPassword_Tapped(object sender, EventArgs e)
-        {
-            if (imgEntry.IsPassword == false)
-            {
-                imgEntry.IsPassword = true;
-                RIcon.Source = "eyehide";
-            }
-            else
-            {
-                imgEntry.IsPassword = false;
-                RIcon.Source = "eyeshow";
-            }
         }
 
         private static void OnImageAlignmentChanged(BindableObject bindable, object oldvalue, object newvalue)
@@ -241,7 +230,5 @@ namespace CustomImageEntry.CustomControls
             Password,
             None
         }
-
-
     }
 }

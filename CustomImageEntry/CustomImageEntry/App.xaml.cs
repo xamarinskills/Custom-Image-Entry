@@ -13,7 +13,7 @@ namespace CustomImageEntry
         {
             InitializeComponent();
 
-            MainPage = new CustomImageEntry.MainPage();
+            MainPage =new NavigationPage( new CustomImageEntry.MainPage());
         }
 
         protected override void OnStart()
